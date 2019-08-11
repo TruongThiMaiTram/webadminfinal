@@ -2,9 +2,25 @@ import React, { Component } from 'react';
 import { Table } from 'react-bootstrap'
 import HeaderTable from './HeaderTable';
 import BodyTable from './BodyTable';
+const axios = require("axios")
 
 export default class ListDriver extends Component {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            data:[]
+        }
+    }
+    componentDidMount()
+    {
+        axios.get('/api/drivers')
+        .then(result =>{
+            this.setState({data: result.data})
+        })
+    }
     render() {
+        const getDriver = this.state.data.map(e => <BodyTable val1={e._id} val2={e.Fullname} val3={e.School}/>)
         return (
 
             <div style={{ width: '80%', display: 'flex',flexFlow:'column', justifyContent: 'center', alignItems: 'center', border: '1px soid',marginTop:'10%' }}>
@@ -15,11 +31,7 @@ export default class ListDriver extends Component {
                             <HeaderTable elm1="STT" elm2="Tên tài xế" elm3="SDT" elm4="Thời gian" />
                         </thead>
                         <tbody>
-                            <BodyTable val1="1" val2="Jack" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' />
-                            <BodyTable val1="2" val2="Adrian" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' />
-                            <BodyTable val1="3" val2="Kent" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' />
-                            <BodyTable val1="4" val2="Penals" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' />
-                            <BodyTable val1="5" val2="Mick" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' />
+                           {getDriver}
                         </tbody>
                     </Table>
                 </div>

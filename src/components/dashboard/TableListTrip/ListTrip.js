@@ -2,8 +2,28 @@ import { Table } from 'react-bootstrap'
 import React, { Component } from 'react';
 import HeaderTableTrip from './HeaderTableTrip';
 import BodyTableTrip from'./BodyTableTrip';
+import axios from 'axios';
+import moment from 'moment';
 class ListTrip extends Component {
+    constructor(props)
+    {
+        super(props);
+        this.state={
+            data:[]
+        }
+    }
+    componentDidMount(){
+axios.get("/trips")
+.then(result => {
+    //console.log(result.data)
+    this.setState({data:result.data})//cập nhật trạng thái data
+})
+    }
     render() {
+        const listTableTrip = this.state.data.map((trip,idx)=>{
+            const {_id,pick_up,drop_off,passenger_id:{full_name}, date_trip} = trip;
+              return <BodyTableTrip val0={idx + 1} val1={_id} val2 ={pick_up} val3={drop_off} val5 ={full_name} val6 = {moment(date_trip).format('MMMM Do YYYY, h:mm:ss a')}/> 
+        })//chuyển dữ liệu từng phần tử trong mảng
         return (
            
             <div style={{ width: '80%', display: 'flex',flexFlow:'column', justifyContent: 'center', alignItems: 'center', border: '1px soid',marginTop:'10%' }}>
@@ -15,14 +35,8 @@ class ListTrip extends Component {
                                                 elm4="Tài xế" elm5="Khách hàng" elm6="Tình trạng" elm7="Đánh giá" />
                         </thead>
                         <tbody>
-                            <BodyTableTrip val0="1" val2="Jack" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' val5="++++" val6="++++" val7="+++"  />
-                            <BodyTableTrip val0="1" val2="Jack" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' val5="++++" val6="++++" val7="+++"  />
-                            <BodyTableTrip val0="1" val2="Jack" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' val5="++++" val6="++++" val7="+++"  />
-                            <BodyTableTrip val0="1" val2="Jack" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' val5="++++" val6="++++" val7="+++"  />
-                            <BodyTableTrip val0="1" val2="Jack" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' val5="++++" val6="++++" val7="+++"  />
-                            <BodyTableTrip val0="1" val2="Jack" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' val5="++++" val6="++++" val7="+++"  />
-                            <BodyTableTrip val0="1" val2="Jack" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' val5="++++" val6="++++" val7="+++"  />
-                            <BodyTableTrip val0="1" val2="Jack" val3="032594491" val4='Thứ Bảy, 27 tháng 7, 2019 (GMT+7)' val5="++++" val6="++++" val7="+++"  />
+                            {listTableTrip}
+                           
                         </tbody>
                     </Table>
                 </div>
