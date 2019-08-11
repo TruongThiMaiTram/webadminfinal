@@ -50,9 +50,9 @@ class ThongTinDoiTac extends Component {
                         
                     </fieldset>
                 </form>
-                {/* <ButtonToolbar>
-                    <Button>Sửa</Button>
-                </ButtonToolbar> */}
+                { <ButtonToolbar>
+                    <Button style={{height:"50px",width:"100px",margin:"10px 350px"}} variant="outline-primary">Sửa</Button>
+                </ButtonToolbar>}
             </div>
         );
     }
