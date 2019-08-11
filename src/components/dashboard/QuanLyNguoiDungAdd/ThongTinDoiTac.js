@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Button,ButtonToolbar} from 'react-bootstrap';
 class ThongTinDoiTac extends Component {
     render() {
         return (
@@ -50,6 +50,9 @@ class ThongTinDoiTac extends Component {
                         
                     </fieldset>
                 </form>
+                {/* <ButtonToolbar>
+                    <Button>Sửa</Button>
+                </ButtonToolbar> */}
             </div>
         );
     }
