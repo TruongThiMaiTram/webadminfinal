@@ -9,6 +9,7 @@ import ThamSoHeThong from '../ThamSoHT/ThamSoHeThong';
 
 import ThongKeCarddWrapper from '../Thongke/ThongKeCarddWrapper';
 import ListTrip from '../TableListTrip/ListTrip'
+import ThongTinKhachHang from '../ThongTinKhachHang/ThongTinKhachHang';
 // import Sonnet from 'react-bootstrap';
 
 export default class Tabs extends Component {
@@ -45,6 +46,9 @@ export default class Tabs extends Component {
                             <Nav.Item>
                                 <Nav.Link style={{ textAlign: 'center', color: '#fff' }} className="bg-warning" eventKey="fifth2">Tham số hệ thống</Nav.Link>
                             </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link style={{ textAlign:'center', color:'#fff'}} className="bg-secondary" eventKey="sixth">Thông tin khách hàng</Nav.Link>
+                            </Nav.Item>
                         </Nav>
                     </Col>
                     <Col sm={9}>
@@ -74,7 +78,9 @@ export default class Tabs extends Component {
                                 {/* Của Tiên nè - THAM SỐ HỆ THỐNG */}
                                 <TabContent content={<ThamSoHeThong />} />
                             </Tab.Pane>
-
+                            <Tab.Pane eventKey="sixth">
+                                <TabContent content={<ThongTinKhachHang/>}/>
+                            </Tab.Pane>
                             
                         </Tab.Content>
                     </Col>
